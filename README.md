@@ -1,6 +1,6 @@
 # Solaris procutils
 
-These programs are based in concept on two similar programs available with
+These `pidof` and `killcmd` programs are based in concept on two similar programs available with
 most Linux distributions, but no source code from any other program was
 consulted before, during, or after development.
 
