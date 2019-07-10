@@ -1,0 +1,31 @@
+* 25 Jan 2001
+
+  bugfix:	single-digit signal numbers were not processed correctly,
+  		causing them to be interpreted as SIGTERM
+
+  release:	v1.2.2
+
+* 2 Jun 2000
+
+  bugfix:	problems with use of /usr/sbin/install in Makefile
+
+  doc:		fixed grievous error in killcmd.man, which included the
+  		DESCRIPTION section written for pidof.man instead of one
+		of its own
+
+  release:	v1.2.1-a
+
+* 19 Apr 2000
+
+  feature:	killcmd: added SIGIOT support--same as SIGABRT, as in ksh kill
+
+  other:	Makefile: switched to using /usr/sbin/install
+
+  release:	v1.2.1
+
+* 10 Nov 1999
+
+  bugfix:       killcmd: signals beginning with letter 'U' no longer
+  		conflict with -U option
+
+  release:	v1.2

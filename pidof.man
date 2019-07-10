@@ -1,0 +1,60 @@
+.\" $Id: pidof.man, 1998/05/17 18:34 jfb $
+.\"
+.\" The author makes no claims as to the fitness or correctness of this software
+.\" for any use whatsoever, and it is provided as is. Any use of this software
+.\" is at the user's own risk. 
+.\"
+.TH PIDOF @BIGMANSEC@ 1998/05/17
+.SH NAME
+pidof \- get process id from program name
+.SH SYNOPSIS
+.B pidof 
+[
+.B -cu
+]
+.IR process_name
+[
+.IR process_name \|.\|.\|.
+]
+.SH DESCRIPTION
+For each
+.I process_name
+that corresponds to a running process,
+.B pidof
+prints the process's process id to the standard output. If a
+.I process_name
+corresponds to multiple processes, all process ids are listed in a
+non\-deterministic order.
+.I process_name
+should not contain a directory component. If it does, no processes
+will be matched.
+.SH COMMAND\-LINE OPTIONS
+.TP
+.B \-c
+Print process IDs separated by commas rather than spaces. This is useful
+when feeding output to
+.BR ps (1)
+or other such programs.
+.TP
+.B \-u
+List only those processes owned by the current user.
+.LP
+.SH RETURN CODES
+An exit status of zero indicates that a process name was matched to
+a current process id.  An exit status of one indicates that no
+processes with the given
+.I process_name
+were found to be running.
+.SH CAVEATS
+If any
+.I process_name
+is PRFNSZ\-1 characters long or longer, there is a possibility of an 
+ambiguous match. PRFNSZ is currently defined as 16 in <sys/procfs.h>,
+so 15 characters is the point at which a
+.I process_name
+can become ambiguous.
+.SH SEE ALSO
+.BR killcmd (@MANSEC@),
+.BR ps (1)
+.SH AUTHOR
+Jeff Blank, jfb@mr-happy.com

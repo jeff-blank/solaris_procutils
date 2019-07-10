@@ -1,0 +1,81 @@
+.\" $Id: killcmd.man, 1999/11/10 12:30 jfb $
+.\"
+.\" The author makes no claims as to the fitness or correctness of this software
+.\" for any use whatsoever, and it is provided as is. Any use of this software
+.\" is at the user's own risk. 
+.\"
+.TH PIDOF @BIGMANSEC@ 1999/11/10
+.SH NAME
+killcmd \- terminate or signal processes by process name
+.SH SYNOPSIS
+.B killcmd
+[ \-q ] [ \-u | \-U
+.IR username
+] [
+.IR \-signal
+]
+.IR process_name
+[
+.IR process_name \|.\|.\|.
+]
+.br
+.B killcmd
+-l
+.SH DESCRIPTION
+For each
+.I process_name
+that corresponds to a running process,
+.B killcmd
+signals the corresponding process id(s) with the specified signal or
+with SIGTERM if no signal is specified.
+.I process_name
+should not contain a directory component. If it does, no processes
+will be matched.
+.SH COMMAND\-LINE OPTIONS
+.TP 8
+.B \-l
+List available signal names. This option may not be used with other options.
+.TP
+.B \-q
+Do not display error messages.
+.TP
+.B \-u
+Attempt to signal only those processes owned by the current user. This
+option is most useful for the super-user.
+.TP
+.B \-U username
+Kill all processes owned by
+.IR username.
+This option only makes sense when invoked by the super-user.
+.TP
+.B \-signal
+Send
+.I signal
+to the named processes. If no
+.I signal
+is given, a SIGTERM will be sent.
+.LP
+.SH RETURN CODES
+An exit status of zero indicates that a process name was matched to
+a current process id.  An exit status of one indicates that no
+processes with the given
+.I process_name
+were found to be running.
+.SH CAVEATS
+If any
+.I process_name
+is PRFNSZ\-1 characters long or longer, there is a possibility of an
+ambiguous match. PRFNSZ is currently defined as 16 in <sys/procfs.h>,
+so 15 characters is the point at which a
+.I process_name
+can become ambiguous.
+.LP
+The -U flag cannot be used for any users named SR1, SR2, or RG. I feel
+that the likelihood of users existing with these names is small enough
+that I need not bother working out a fix.
+.SH SEE ALSO
+.BR kill (1),
+.BR kill (2),
+.BR pidof (@MANSEC@)
+.SH AUTHOR
+Jeff Blank, jfb@mr-happy.com
